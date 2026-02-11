@@ -1,3 +1,5 @@
+[![Open in Coder](https://coder.valiantlynx.com/open-in-coder.svg)](https://coder.valiantlynx.com/templates/docker/workspace?param.git_repo=git@github.com:mythrantic/ollama-docker.git)
+
 # Ollama Docker Compose Setup
 
 Welcome to the Ollama Docker Compose Setup! This project simplifies the deployment of Ollama using Docker Compose, making it easy to run Ollama with all its dependencies in a containerized environment.
@@ -96,3 +98,4 @@ This project is licensed under the [RSOSL](https://github.com/mythrantic/ollama-
 If you have any questions or concerns, please contact us at [vantlynxz@gmail.com](mailto:vantlynxz@gmail.com).
 
 Enjoy using Ollama with Docker Compose! 🐳🚀
+
