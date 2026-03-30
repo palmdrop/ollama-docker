@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "setupComplete": true,
+  "preferences": {},
+  "personalization": {},
+  "modelProviders": [
+    {
+      "id": "8217c372-3ff1-4a63-9dd5-d6cc4c2c3a8e",
+      "name": "Transformers",
+      "type": "transformers",
+      "chatModels": [],
+      "embeddingModels": [],
+      "config": {},
+      "hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": "1621a96d-1c37-42bc-a990-79c3fa7ba6cb",
+      "name": "Ollama",
+      "type": "ollama",
+      "config": {
+        "name": "Ollama",
+        "baseURL": "http://host.docker.internal:7869"
+      },
+      "chatModels": [],
+      "embeddingModels": [],
+      "hash": "d0cbe7f5ae6a9270120e31e589de2fd33fda94d1a337c249aa34531c403fa7ff"
+    }
+  ],
+  "search": {
+    "searxngURL": "http://localhost:8080"
+  }
+}

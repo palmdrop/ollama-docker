@@ -13,23 +13,34 @@ services:
       - ollama-webui
     networks:
       - ollama-docker
-
+      
   ollama:
-    image: docker.io/ollama/ollama:latest
-    ports:
-      - 7869:11434
     volumes:
-      - .:/code
       - ./ollama/ollama:/root/.ollama
     container_name: ollama
     pull_policy: always
     tty: true
-    restart: always
+    restart: unless-stopped
+    image: docker.io/ollama/ollama:latest
+    ports:
+      - 7869:11434
     environment:
       - OLLAMA_KEEP_ALIVE=24h
-      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_NUM_PARALLEL=2
+      - OLLAMA_FLASH_ATTENTION=1
+      - OLLAMA_NUM_GPU=999
+      - OLLAMA_GPU_OVERHEAD=0
     networks:
       - ollama-docker
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all 
+              capabilities: [gpu]
+    cpus: "8"
+    mem_limit: "28g"
 
   ollama-webui:
     image: ghcr.io/open-webui/open-webui:main
@@ -47,9 +58,20 @@ services:
       - WEBUI_NAME=valiantlynx AI
       - WEBUI_URL=http://localhost:8080
       - WEBUI_SECRET_KEY=t0p-s3cr3t
-      - NO_PROXY=host.docker.internal 
+      - NO_PROXY=host.docker.internal
     extra_hosts:
       - host.docker.internal:host-gateway
+    restart: unless-stopped
+    networks:
+      - ollama-docker
+
+  vane:
+    image: itzcrazykns1337/vane:latest
+    container_name: vane
+    volumes:
+      - ./vane:/home/vane/data
+    ports:
+      - 3000:3000
     restart: unless-stopped
     networks:
       - ollama-docker
@@ -57,4 +79,3 @@ services:
 networks:
   ollama-docker:
     external: false
-  
